@@ -8,7 +8,6 @@ G = pgv.AGraph(strict=False, directed=True)
 
 
 def getActivityCount():
-    print('get act count:')
     for caseId in reader.log:
         for activity in reader.log[caseId]:
             if activity[0] not in activityCount:
@@ -75,17 +74,12 @@ def incrementTransitionCount(fromNode, toNode):
 
 
 def getTransitionMatrix():
-    print('get transition matrix:')
-
-    print("m.log")
     for caseId in reader.log:
-        print("id ", caseId)
         for (task, user, timestamp) in reader.log[caseId]:
             print(task, user, timestamp)
 
     # global caseId, ai, aj
     for caseId in reader.log:
-        print('caseId:', caseId)
         for i in range(len(reader.log[caseId]) - 1):
             ai = getActivity(caseId, i)
             aj = getActivity(caseId, i + 1)
@@ -103,6 +97,5 @@ def printTransitionMatrix():
 
 
 def printActivityCount():
-    print('Activity count:')
     for activity in sorted(activityCount.keys()):
         print(activity, ' count:', activityCount[activity])
