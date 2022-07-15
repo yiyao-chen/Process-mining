@@ -75,11 +75,6 @@ def incrementTransitionCount(fromNode, toNode):
 
 def getTransitionMatrix():
     for caseId in reader.log:
-        for (task, user, timestamp) in reader.log[caseId]:
-            print(task, user, timestamp)
-
-    # global caseId, ai, aj
-    for caseId in reader.log:
         for i in range(len(reader.log[caseId]) - 1):
             ai = getActivity(caseId, i)
             aj = getActivity(caseId, i + 1)

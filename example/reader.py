@@ -1,5 +1,5 @@
 
-file = open("data/event log.csv", "r")
+file = open("../data/event log.csv", "r")
 log = dict()
 
 def readFile():
