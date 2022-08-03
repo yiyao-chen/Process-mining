@@ -7,6 +7,10 @@ transitionMatrix = dict()
 activityCount = dict()
 G = pgv.AGraph(strict=False, directed=True)
 
+mapping = {"The steady-state has deviated, a weakness may have been discovered": "The steady-state has deviated",
+               "Steady state probe 'checking battery level' is not in the given tolerance so failing this experiment": "Not in the given tolerance",
+               "Running experiment: Modify Sensor Battery Level/ Message-interval": "Running experiment"
+               }
 
 def getActivityCount():
     for caseId in reader.log:
@@ -18,7 +22,7 @@ def getActivityCount():
 
 def generateGraph(activityCount):
     G = pgv.AGraph(strict=False, directed=True)
-    G.graph_attr['rankdir'] = 'LR'
+    G.graph_attr['rankdir'] = 'TB'
     G.node_attr['shape'] = 'box'
 
     addNodes(G, activityCount)
@@ -44,10 +48,11 @@ def addEdges(G):
 def addNodes(G, activityCount):
     x_min = min(activityCount.values())
     x_max = max(activityCount.values())
-    print(x_min, x_max)
 
     for activity in activityCount:
         text = activity + '\n count: ' + str(activityCount[activity])
+        if activity.strip() in mapping.keys():
+            text = mapping[activity.strip()] + '\n Count: ' + str(activityCount[activity])
         grayLevel = int(float(x_max - activityCount[activity]) / float(x_max - x_min) * 100.)
         fillColor = getFillColor(grayLevel)
         fontColor = getFontColor(grayLevel)

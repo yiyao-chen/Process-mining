@@ -1,5 +1,5 @@
 
-file = open("../data/functional_chaos_events_processed.csv", "r")
+file = open("../data/functional_chaos_events_small.csv", "r")
 log = dict()
 
 def readFile():

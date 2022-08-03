@@ -1,3 +1,4 @@
+import datetime
 
 file = open("../data/event log.csv", "r")
 log = dict()
@@ -11,7 +12,7 @@ def readFile():
         caseId = parts[0]
         task = parts[1]
         user = parts[2]
-        timestamp = parts[3]
+        timestamp = datetime.datetime.strptime(parts[3], "%Y-%m-%d %H:%M:%S")
         if caseId not in log:
             log[caseId] = []
         event = (task, user, timestamp)

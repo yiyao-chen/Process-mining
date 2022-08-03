@@ -6,10 +6,10 @@ def main():
     reader.readFile()
     print("\n\n")
     graph.getTransitionMatrix()
-    graph.printTransitionMatrix()
+    #graph.printTransitionMatrix()
 
     graph.getActivityCount()
-    graph.printActivityCount()
+    #graph.printActivityCount()
 
     graph.generateGraph(graph.activityCount)
 
